@@ -180,7 +180,14 @@ export default function Sidebar({
           <HomeIcon className="w-5 h-5" />
           <span className="text-sm font-medium">All Notes</span>
         </button>
-        <button className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+        <button
+          onClick={() => onSelectFolder("favorites")}
+          className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
+            selectedFolderId === "favorites"
+              ? "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400"
+              : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+          }`}
+        >
           <StarIcon className="w-5 h-5" />
           <span className="text-sm font-medium">Favorites</span>
         </button>

@@ -15,6 +15,7 @@ export async function GET(req: NextRequest) {
     const user = await requireAuth();
     const { searchParams } = new URL(req.url);
     const folderId = searchParams.get("folderId");
+    const isFavorite = searchParams.get("isFavorite");
     const search = searchParams.get("search");
 
     const where: any = {
@@ -24,6 +25,10 @@ export async function GET(req: NextRequest) {
 
     if (folderId) {
       where.folderId = folderId;
+    }
+
+    if (isFavorite === "true") {
+      where.isFavorite = true;
     }
 
     if (search) {
@@ -43,6 +48,7 @@ export async function GET(req: NextRequest) {
         tags: true,
         isFavorite: true,
         isPinned: true,
+        folderId: true,
         createdAt: true,
         updatedAt: true,
       },
