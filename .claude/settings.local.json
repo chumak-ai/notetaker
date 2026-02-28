@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npm run lint:*)",
+      "Bash(node verify-setup.js:*)",
+      "Bash(npm run build:*)",
+      "Bash(test -f .env)",
+      "Bash(test -d node_modules)",
+      "Bash(npx prisma migrate status)",
+      "Bash(docker --version)",
+      "Bash(docker-compose up -d)",
+      "Bash(npx prisma migrate dev --name init)",
+      "Bash(git add .)"
+    ]
+  }
+}
