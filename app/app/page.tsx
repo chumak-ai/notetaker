@@ -13,6 +13,19 @@ export default function AppPage() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [noteListCollapsed, setNoteListCollapsed] = useState(false);
 
+  // Determine view mode based on selectedFolderId
+  const getViewMode = (): "all" | "favorites" | "folder" => {
+    if (selectedFolderId === "favorites") return "favorites";
+    if (selectedFolderId === null) return "all";
+    return "folder";
+  };
+
+  // Get actual folderId (null for "all" and "favorites" views)
+  const getActualFolderId = (): string | null => {
+    if (selectedFolderId === "favorites") return null;
+    return selectedFolderId;
+  };
+
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
       {/* Folders Sidebar */}
@@ -27,7 +40,8 @@ export default function AppPage() {
       <NoteList
         collapsed={noteListCollapsed}
         onToggleCollapse={() => setNoteListCollapsed(!noteListCollapsed)}
-        folderId={selectedFolderId}
+        folderId={getActualFolderId()}
+        viewMode={getViewMode()}
         selectedNoteId={selectedNoteId}
         onSelectNote={setSelectedNoteId}
       />
